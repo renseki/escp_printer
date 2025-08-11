@@ -1,0 +1,11 @@
+name: escp_printer
+description: Helps you build raw base64 text to be printed by Epson dot matrix printers.
+version: 1.0.0
+repository: https://github.com/renseki/escp_printer
+
+environment:
+  sdk: ^3.7.2
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.24.0
