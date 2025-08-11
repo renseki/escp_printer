@@ -21,13 +21,9 @@ enum EscCommand {
 
   final String value;
 
-  static List<int> encode({
-    required String text,
-    List<EscCommand> commands = const [],
-    bool hasNewLine = true,
-  }) {
-    final string = reset.value + commands.map((e) => e.value).join() + _transform(text);
-    return (hasNewLine ? string + newLine.value : string).codeUnits;
+  static List<int> encode(String text) {
+    final string = reset.value + _transform(text) + newLine.value;
+    return string.codeUnits;
   }
 
   static String _transform(String text) {
