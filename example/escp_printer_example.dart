@@ -25,6 +25,6 @@ void main() {
     "[L]Tel : +33801201456",
   ];
   for (final text in texts) {
-    print(EscCommand.encode(text: text));
+    print(EscCommand.encode(text));
   }
 }
