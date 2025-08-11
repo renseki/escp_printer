@@ -2,19 +2,28 @@ import 'package:escp_printer/escp_printer.dart';
 
 extension StringExtension on String {
   String get replacedAlignment {
-    return replaceFirst('[L]', EscCommand.alignLeft.value)
-        .replaceFirst('[C]', EscCommand.alignCenter.value)
-        .replaceFirst('[R]', EscCommand.alignRight.value);
+    return replaceFirst(RegExp(r'\[[Ll]\]'), EscCommand.alignLeft.value)
+        .replaceFirst(RegExp(r'\[[Cc]\]'), EscCommand.alignCenter.value)
+        .replaceFirst(RegExp(r'\[[Rr]\]'), EscCommand.alignRight.value);
   }
 
   String get replacedStyle {
-    return replaceAll('<b>', EscCommand.boldOn.value)
-        .replaceAll('</b>', EscCommand.boldOff.value)
-        .replaceAll('<u>', EscCommand.underlineOn.value)
-        .replaceAll('</u>', EscCommand.underlineOff.value)
-        .replaceAll('<i>', EscCommand.italicOn.value)
-        .replaceAll('</i>', EscCommand.italicOff.value)
-        .replaceAll("<font size='big'>", EscCommand.bigOn.value)
-        .replaceAll("</font>", EscCommand.bigOff.value);
+    return replaceAll(RegExp(r'<[Bb]>'), EscCommand.boldOn.value)
+        .replaceAll(RegExp(r'</[Bb]>'), EscCommand.boldOff.value)
+        .replaceAll(RegExp(r'<[Uu]>'), EscCommand.underlineOn.value)
+        .replaceAll(RegExp(r'</[Uu]>'), EscCommand.underlineOff.value)
+        .replaceAll(RegExp(r'<[Ii]>'), EscCommand.italicOn.value)
+        .replaceAll(RegExp(r'</[Ii]>'), EscCommand.italicOff.value)
+        .replaceAll(
+          RegExp(
+            "<font\\s+size\\s*=\\s*['\"]big['\"]\\s*>",
+            caseSensitive: false,
+          ),
+          EscCommand.bigOn.value,
+        )
+        .replaceAll(
+          RegExp(r'</font>', caseSensitive: false),
+          EscCommand.bigOff.value,
+        );
   }
 }
