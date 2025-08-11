@@ -26,11 +26,11 @@ enum EscCommand {
     List<EscCommand> commands = const [],
     bool hasNewLine = true,
   }) {
-    final string = reset.value + commands.map((e) => e.value).join() + text;
+    final string = reset.value + commands.map((e) => e.value).join() + _transform(text);
     return (hasNewLine ? string + newLine.value : string).codeUnits;
   }
 
-  static String transform(String text) {
+  static String _transform(String text) {
     return text.replacedAlignment.replacedStyle;
   }
 }
