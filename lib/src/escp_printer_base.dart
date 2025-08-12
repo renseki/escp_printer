@@ -2,6 +2,9 @@ import 'package:escp_printer/src/string_extension.dart';
 
 enum EscCommand {
   reset(value: '\x1B@'),
+  tearHalf(value: '\x1BC\x21'),
+  tearThird(value: '\x1BC\x16'),
+  formFeed(value: '\x0C'),
   newLine(value: '\x0A'),
   boldOn(value: '\x1BE'),
   boldOff(value: '\x1BF'),
@@ -22,7 +25,7 @@ enum EscCommand {
   final String value;
 
   static List<int> encode(String text) {
-    final string = reset.value + _transform(text) + newLine.value;
+    final string = _transform(text) + newLine.value;
     return string.codeUnits;
   }
 
