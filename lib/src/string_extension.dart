@@ -1,10 +1,14 @@
 import 'package:escp_printer/escp_printer.dart';
 
 extension StringExtension on String {
+  String get replacedNonAscii {
+    return replaceAll(RegExp(r'[^\x00-\x7F]'), ' ');
+  }
+
   String get replacedAlignment {
-    return replaceFirst(RegExp(r'\[[Ll]\]'), EscCommand.alignLeft.value)
-        .replaceFirst(RegExp(r'\[[Cc]\]'), EscCommand.alignCenter.value)
-        .replaceFirst(RegExp(r'\[[Rr]\]'), EscCommand.alignRight.value);
+    return replaceAll(RegExp(r'\[[Ll]\]'), EscCommand.alignLeft.value)
+        .replaceAll(RegExp(r'\[[Cc]\]'), EscCommand.alignCenter.value)
+        .replaceAll(RegExp(r'\[[Rr]\]'), EscCommand.alignRight.value);
   }
 
   String get replacedStyle {

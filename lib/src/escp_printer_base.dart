@@ -27,6 +27,6 @@ enum EscCommand {
   }
 
   static String _transform(String text) {
-    return text.replacedAlignment.replacedStyle;
+    return text.replacedNonAscii.replacedAlignment.replacedStyle;
   }
 }
